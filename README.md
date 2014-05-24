@@ -1,7 +1,7 @@
 # dealer
 
-[![Build Status](https://travis-ci.org/meanjs/mean.svg?branch=master)](https://travis-ci.org/meanjs/mean)
-[![Dependencies Status](https://david-dm.org/meanjs/mean.svg)](https://david-dm.org/meanjs/mean)
+[![Build Status](https://travis-ci.org/OctobitStudios/dealer.svg)](https://travis-ci.org/OctobitStudios/dealer)
+[![Dependencies Status](https://david-dm.org/OctobitStudios/dealer.svg)](https://david-dm.org/OctobitStudios/dealer)
 
 MEAN.JS is a full-stack JavaScript open-source solution, which provides a solid starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), and [AngularJS](http://angularjs.org/) based applications. The idea is to solve the common issues with connecting those frameworks, build a robust framework to support daily development needs, and help developers use better practices while working with popular JavaScript components. 
 
