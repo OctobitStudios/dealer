@@ -16,11 +16,9 @@ var RoomSchema = new Schema({
         required: 'Please fill in a room name',
         trim: true
     },
-    updated: {
-        type: Date
-    },
     created: {
         type: Date,
+        expires: 86400,//expire after 24 hours
         default: Date.now
     }
 });
