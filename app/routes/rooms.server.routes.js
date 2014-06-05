@@ -9,4 +9,5 @@ module.exports = function(app) {
     // User Routes
     var rooms = require('../../app/controllers/rooms');
     app.route('/rooms').post(rooms.addRoom);
+    app.route('/rooms/:id').get(rooms.findRoom);
 };

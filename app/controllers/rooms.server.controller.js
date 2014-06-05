@@ -49,3 +49,17 @@ exports.addRoom = function(req, res){
         }
     });
 };
+
+exports.findRoom = function(req, res){
+    return Room.findById(req.params.id, function (err, room) {
+        if (err) {
+            return res.send(400, {
+                message: getErrorMessage(err)
+            });
+        } else {
+            res.jsonp(room);
+        }
+    });
+};
+
+
