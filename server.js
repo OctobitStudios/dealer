@@ -21,10 +21,13 @@ var app = require('./config/express')(db);
 require('./config/passport')();
 
 // Start the app by listening on <port>
-app.listen(config.port);
+var server = app.listen(config.port);
+
+// Initialize socket.io
+require('./config/socket.io')(server);
 
 // Expose app
 exports = module.exports = app;
 
 // Logging initialization
-console.log('MEAN.JS application started on port ' + config.port);
+console.log('dealer application started on port ' + config.port);

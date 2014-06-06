@@ -6,7 +6,7 @@
 var passport = require('passport');
 
 module.exports = function(app) {
-    // User Routes
+    // rooms routes
     var rooms = require('../../app/controllers/rooms');
     app.route('/rooms').post(rooms.addRoom);
     app.route('/rooms/:id').get(rooms.findRoom);

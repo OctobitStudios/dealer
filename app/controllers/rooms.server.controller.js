@@ -17,7 +17,9 @@ var getErrorMessage = function(err) {
     if (err.code) {
         switch (err.code) {
             case 11000:
+                break;
             case 11001:
+                break;
             default:
                 message = 'Something went wrong';
         }
@@ -51,6 +53,10 @@ exports.addRoom = function(req, res){
 };
 
 exports.findRoom = function(req, res){
+    //check parameters
+    if(!req.params.id){
+        throw new Error('Cannot find a room without an id');
+    }
     return Room.findById(req.params.id, function (err, room) {
         if (err) {
             return res.send(400, {

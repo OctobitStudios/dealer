@@ -16,6 +16,9 @@ var RoomSchema = new Schema({
         required: 'Please fill in a room name',
         trim: true
     },
+    players: {
+        type: Array
+    },
     created: {
         type: Date,
         expires: 86400,//expire after 24 hours
