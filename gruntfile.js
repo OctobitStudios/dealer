@@ -98,20 +98,22 @@ module.exports = function(grunt) {
                 require: 'server.js'
             }
         },
+        mochacov: {
+            travis: {
+              options: {
+                  coveralls: true
+              }
+            },
+            options: {
+                files: 'app/tests/*.js',
+                output: 'coverage/',
+                reporter: 'spec',
+                require: 'server.js'
+            }
+        },
         karma: {
             unit: {
                 configFile: 'karma.conf.js'
-            }
-        },
-        coveralls: {
-            options: {
-                // LCOV coverage file relevant to every target
-                src: 'coverage/**/lcov.info',
-
-                // When true, grunt-coveralls will only print a warning rather than
-                // an error, to prevent CI builds from failing unnecessarily (e.g. if
-                // coveralls.io is down). Optional, defaults to false.
-                force: false
             }
         }
     });
@@ -141,5 +143,8 @@ module.exports = function(grunt) {
     grunt.registerTask('build', ['jshint', 'csslint', 'loadConfig' ,'uglify', 'cssmin']);
 
     // Test task.
-    grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit', 'coveralls']);
+    grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
+
+    // Travis task.
+    grunt.registerTask('travis', ['env:test', 'mochacov:travis', 'karma:unit']);
 };

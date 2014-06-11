@@ -7,7 +7,6 @@ services:
   - mongodb
 before_install:
  - npm install istanbul -g
- - npm install coveralls -g
  - npm install grunt-cli -g
  - npm install
-after_script: "cat ./coverage/lcov.info | coveralls"
+script: 'grunt travis'
