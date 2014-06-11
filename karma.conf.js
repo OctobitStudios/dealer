@@ -17,7 +17,17 @@ module.exports = function(config) {
 		// Test results reporter to use
 		// Possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
 		//reporters: ['progress'],
-		reporters: ['progress'],
+		reporters: ['progress', 'coverage'],
+
+        // Coverage preprocessing
+        preprocessors: {
+          '**/public/modules/*.js': 'coverage'
+        },
+
+        coverageReporter: {
+            type : 'lcovonly',
+            dir : 'coverage/'
+        },
 
 		// Web server port
 		port: 9876,

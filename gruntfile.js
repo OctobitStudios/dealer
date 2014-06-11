@@ -8,34 +8,34 @@ module.exports = function(grunt) {
             serverViews: {
                 files: ['app/views/**'],
                 options: {
-                    livereload: true,
+                    livereload: true
                 }
             },
             serverJS: {
                 files: ['gruntfile.js', 'server.js', 'config/**/*.js', 'app/**/*.js'],
                 tasks: ['jshint'],
                 options: {
-                    livereload: true,
+                    livereload: true
                 }
             },
             clientViews: {
                 files: ['public/modules/**/views/*.html'],
                 options: {
-                    livereload: true,
+                    livereload: true
                 }
             },
             clientJS: {
                 files: ['public/js/**/*.js', 'public/modules/**/*.js'],
                 tasks: ['jshint'],
                 options: {
-                    livereload: true,
+                    livereload: true
                 }
             },
             clientCSS: {
                 files: ['public/**/css/*.css'],
                 tasks: ['csslint'],
                 options: {
-                    livereload: true,
+                    livereload: true
                 }
             }
         },
@@ -49,7 +49,7 @@ module.exports = function(grunt) {
         },
         csslint: {
             options: {
-                csslintrc: '.csslintrc',
+                csslintrc: '.csslintrc'
             },
             all: {
                 src: ['public/modules/**/css/*.css']
@@ -102,6 +102,17 @@ module.exports = function(grunt) {
             unit: {
                 configFile: 'karma.conf.js'
             }
+        },
+        coveralls: {
+            options: {
+                // LCOV coverage file relevant to every target
+                src: 'coverage/**/lcov.info',
+
+                // When true, grunt-coveralls will only print a warning rather than
+                // an error, to prevent CI builds from failing unnecessarily (e.g. if
+                // coveralls.io is down). Optional, defaults to false.
+                force: false
+            }
         }
     });
 
@@ -130,5 +141,5 @@ module.exports = function(grunt) {
     grunt.registerTask('build', ['jshint', 'csslint', 'loadConfig' ,'uglify', 'cssmin']);
 
     // Test task.
-    grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
+    grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit', 'coveralls']);
 };

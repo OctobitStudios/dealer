@@ -37,7 +37,9 @@ var getErrorMessage = function(err) {
  */
 exports.addRoom = function(req, res){
     // Init Variables
-    var room = new Room(req.body);
+    console.log('Creating new room for user ' + JSON.stringify(req.user));
+    var roomConfig = _.defaults({creator: req.user}, req.body),
+        room = new Room(roomConfig);
     var message = null;
 
     // Save the room
@@ -56,6 +58,22 @@ exports.findRoom = function(req, res){
     //check parameters
     if(!req.params.id){
         throw new Error('Cannot find a room without an id');
+    }
+    return Room.findById(req.params.id, function (err, room) {
+        if (err) {
+            return res.send(400, {
+                message: getErrorMessage(err)
+            });
+        } else {
+            res.jsonp(room);
+        }
+    });
+};
+
+exports.findRoom = function(req, res){
+    //check parameters
+    if(!req.params.id){
+        throw new Error('Cannot join a room without a room id');
     }
     return Room.findById(req.params.id, function (err, room) {
         if (err) {

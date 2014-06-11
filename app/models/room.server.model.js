@@ -23,6 +23,10 @@ var RoomSchema = new Schema({
         type: Date,
         expires: 86400,//expire after 24 hours
         default: Date.now
+    },
+    creator: {
+        type: String
+        //required: 'You must be logged in to create a room'
     }
 });
 
