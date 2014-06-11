@@ -99,16 +99,28 @@ module.exports = function(grunt) {
             }
         },
         mochacov: {
-            travis: {
+            unit: {
+                options: {
+                    reporter: 'spec'
+                }
+            },
+            coverage: {
+                options: {
+                    reporter: 'mocha-term-cov-reporter',
+                    coverage: true
+                }
+            },
+            coveralls: {
               options: {
-                  coveralls: true
+                  coveralls:{
+                      serviceName: 'travis-ci'
+                  }
               }
             },
             options: {
                 files: 'app/tests/*.js',
-                output: 'coverage/',
-                reporter: 'spec',
                 require: 'server.js'
+
             }
         },
         karma: {
@@ -146,5 +158,5 @@ module.exports = function(grunt) {
     grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
 
     // Travis task.
-    grunt.registerTask('travis', ['env:test', 'mochacov:travis', 'karma:unit']);
+    grunt.registerTask('travis', ['env:test', 'mochacov:unit', 'mochacov:coverage', 'mochacov:coveralls', 'karma:unit']);
 };
