@@ -21,7 +21,6 @@ var RoomSchema = new Schema({
     },
     created: {
         type: Date,
-        expires: 86400,//expire after 24 hours
         default: Date.now
     },
     creator: {
