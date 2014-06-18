@@ -16,7 +16,16 @@ var RoomSchema = new Schema({
         required: 'Please fill in a room name',
         trim: true
     },
+    /**
+     * The current players/users
+     */
     players: {
+        type: Array
+    },
+    /**
+     * All the users who have ever joined the room
+     */
+    members: {
         type: Array
     },
     created: {
@@ -24,9 +33,20 @@ var RoomSchema = new Schema({
         default: Date.now
     },
     creator: {
-        type: String
-        //required: 'You must be logged in to create a room'
+        type: String,
+        required: 'You must be logged in to create a room'
     }
 });
+
+/**
+ * Find the rooms a user belongs to
+ */
+RoomSchema.statics.findUserRooms = function(userId, callback){
+    var _this = this;
+
+    _this
+        .find({members: userId})
+        .exec(callback);
+};
 
 mongoose.model('Room', RoomSchema);

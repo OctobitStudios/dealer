@@ -38,9 +38,12 @@ var getErrorMessage = function(err) {
 exports.addRoom = function(req, res){
     // Init Variables
     console.log('Creating new room for user ' + JSON.stringify(req.user));
-    var roomConfig = _.defaults({creator: req.user}, req.body),
+    var roomConfig = _.defaults({
+            creator: req.user._id,
+            players: [req.user._id],
+            members: [req.user._id]
+        }, req.body),
         room = new Room(roomConfig);
-    var message = null;
 
     // Save the room
     room.save(function(err) {
@@ -83,6 +86,25 @@ exports.findRoom = function(req, res){
         } else {
             res.jsonp(room);
         }
+    });
+};
+
+/**
+ * Gets all the rooms that the user has participated in
+ * @param req
+ * @param res
+ */
+exports.getRooms = function(req, res){
+    console.log('Getting rooms for ' + req.user._id);
+    Room.findUserRooms(req.user._id, function(err, rooms){
+       if(err){
+           console.log(err);
+           res.json({});
+       }
+       else {
+           console.log('found rooms ' + JSON.stringify(rooms));
+           res.json({rooms: rooms});
+       }
     });
 };
 
