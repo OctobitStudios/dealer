@@ -1,0 +1,33 @@
+<section data-ng-controller="ListController">
+    <!-- New Room Dialog -->
+    <div id="new-room-dialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="new-room-form" ng-submit="createRoom()">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">New Room</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" class="form-control" placeholder="Room Name" ng-model="room.name">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <input class="btn btn-primary" type="submit" value="Create">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Room List -->
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">Rooms<a class="btn-sm btn-primary pull-right" data-toggle="modal" data-target="#new-room-dialog">New Room</a></div>
+        <div class="panel-body" ng-hide="hasRooms">
+            You don't have any rooms.
+        </div>
+        <ul class="list-group" ng-repeat="room in rooms">
+            <li class="list-group-item clearfix">{{room.name}}<a class="btn-sm btn-default pull-right" href="#!/rooms/{{room._id}}">Enter Room</a></li>
+        </ul>
+    </div>
+</section>

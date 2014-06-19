@@ -73,7 +73,7 @@ exports.findRoom = function(req, res){
     });
 };
 
-exports.findRoom = function(req, res){
+exports.joinRoom = function(req, res){
     //check parameters
     if(!req.params.id){
         throw new Error('Cannot join a room without a room id');
@@ -99,11 +99,11 @@ exports.getRooms = function(req, res){
     Room.findUserRooms(req.user._id, function(err, rooms){
        if(err){
            console.log(err);
-           res.json({});
+           res.json([]);
        }
        else {
            console.log('found rooms ' + JSON.stringify(rooms));
-           res.json({rooms: rooms});
+           res.json(rooms);
        }
     });
 };
