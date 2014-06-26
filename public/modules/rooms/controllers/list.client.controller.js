@@ -21,7 +21,8 @@ angular.module('rooms').controller('ListController', ['$scope', '$location', 'Au
 
         // Called by the new room dialog to create the room.
         $scope.createRoom = function() {
-            // TODO: Validate form.
+            // TODO Validate form
+
             Rooms.save($scope.room, function(room) {
                 // Hide the dialog.
                 $('#new-room-dialog').modal('hide');

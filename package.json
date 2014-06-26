@@ -73,6 +73,7 @@
     "mocha-lcov-reporter": "0.0.1",
     "grunt-mocha-cov": "~0.2.1",
     "blanket": "~1.1.6",
-    "mocha-term-cov-reporter": "~0.2.0"
+    "mocha-term-cov-reporter": "~0.2.0",
+    "grunt-contrib-sass": "~0.7.3"
   }
 }

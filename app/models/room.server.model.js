@@ -10,10 +10,16 @@ var mongoose = require('mongoose'),
  * Room Schema
  */
 var RoomSchema = new Schema({
+    /**
+     * The room name
+     */
     name: {
         type: String,
         required: 'Please fill in a room name',
         trim: true
+    },
+    description: {
+        type: String
     },
     /**
      * The current players/users
