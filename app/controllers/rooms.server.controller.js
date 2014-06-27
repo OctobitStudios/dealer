@@ -40,8 +40,12 @@ exports.addRoom = function(req, res){
     console.log('Creating new room for user ' + JSON.stringify(req.user));
     var roomConfig = _.defaults({
             creator: req.user._id,
-            players: [req.user._id],
-            members: [req.user._id]
+            members: [
+                {
+                    userId: req.user._id,
+                    active: true
+                }
+            ]
         }, req.body),
         room = new Room(roomConfig);
 

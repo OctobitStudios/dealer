@@ -22,23 +22,21 @@ var RoomSchema = new Schema({
         type: String
     },
     /**
-     * The current players/users
-     */
-    players: {
-        type: Array
-    },
-    /**
      * All the users who have ever joined the room
      */
-    members: {
-        type: Array
-    },
+    members: [
+        {
+            userId: {type: Schema.Types.ObjectId, ref: 'User' },
+            active: Boolean // Is the user active in the room
+        }
+    ],
     created: {
         type: Date,
         default: Date.now
     },
     creator: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'User',
         required: 'You must be logged in to create a room'
     }
 });
@@ -47,10 +45,7 @@ var RoomSchema = new Schema({
  * Find the rooms a user belongs to
  */
 RoomSchema.statics.findUserRooms = function(userId, callback){
-    var _this = this;
-
-    _this
-        .find({members: userId})
+    this.find({"members.userId": userId})
         .exec(callback);
 };
 
