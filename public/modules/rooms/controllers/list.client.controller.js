@@ -36,5 +36,15 @@ angular.module('rooms').controller('ListController', ['$scope', '$location', 'Au
                 $location.path('/rooms/' + room._id);
             });
         };
+
+        // Called from the room options menu
+        $scope.deleteRoom = function(room){
+            var roomId = room._id;
+            Rooms.delete({roomId: roomId}, function(){
+                jQuery.grep($scope.rooms, function(r) {
+                    return r._id != roomId;
+                });
+            });
+        }
 	}
 ]);

@@ -10,14 +10,16 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="name">Description</label>
+                            <label for="new-room-name">Description</label>
                             <span class="label label-danger" data-ng-show="submitted && room.description.$error.required">Required!</span>
-                            <input type="text" name="name" placeholder="Room Name" ng-model="room.name" class="form-control" required></textarea>
+                            <input type="text" id="new-room-name" name="name" placeholder="Room Name" ng-model="room.name" class="form-control" required></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="description">Description</label>
-                            <span class="label label-danger" data-ng-show="submitted && room.description.$error.required">Required!</span>
-                            <textarea name="description" placeholder="Room Description" ng-model="room.description" class="form-control" required></textarea>
+                            <label for="new-room-description">Description</label>
+                            <textarea id="new-room-description" name="description" placeholder="Room Description" ng-model="room.description" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-room-deck">Deck</label>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -36,7 +38,19 @@
             You don't have any rooms.
         </div>
         <ul class="list-group" ng-repeat="room in rooms">
-            <li class="list-group-item clearfix">{{room.name}}<a class="btn-sm btn-default pull-right" href="#!/rooms/{{room._id}}">Enter Room</a></li>
+            <li class="list-group-item clearfix">
+                <div class="dropdown pull-left">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu-{{room._id}}" data-toggle="dropdown">
+                        Options
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-{{room._id}}">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" ng-click="deleteRoom(room)">Delete</a></li>
+                        </ul>
+                </div>
+                {{room.name}}<span>{{room.description}}</span>
+                <a class="btn-sm btn-default pull-right" href="#!/rooms/{{room._id}}">Enter Room</a>
+            </li>
         </ul>
     </div>
 </section>
