@@ -57,10 +57,29 @@ exports.addRoom = function(req, res){
     });
 };
 
+/**
+ * Add a new room
+ */
+exports.deleteRoom = function(req, res){
+    //check parameters
+    if(!req.params.id){
+        throw new Error('A room id is required');
+    }
+    return Room.findByIdAndRemove(req.params.id, function (err, room) {
+        if (err) {
+            return res.send(400, {
+                message: getErrorMessage(err)
+            });
+        } else {
+            res.jsonp(room);
+        }
+    });
+};
+
 exports.findRoom = function(req, res){
     //check parameters
     if(!req.params.id){
-        throw new Error('Cannot find a room without an id');
+        throw new Error('A room id is required');
     }
     return Room.findById(req.params.id, function (err, room) {
         if (err) {
