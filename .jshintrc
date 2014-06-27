@@ -20,6 +20,7 @@
 	"globals": { // Globals variables.
 		"jasmine": true,
 		"angular": true,
+        "$": true, // jQuery
 		"ApplicationConfiguration": true
 	},
 	"predef": [ // Extra globals.
