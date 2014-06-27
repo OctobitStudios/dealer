@@ -41,8 +41,8 @@ angular.module('rooms').controller('ListController', ['$scope', '$location', 'Au
         $scope.deleteRoom = function(room){
             var roomId = room._id;
             Rooms.delete({roomId: roomId}, function(){
-                jQuery.grep($scope.rooms, function(r) {
-                    return r._id != roomId;
+                $scope.rooms = jQuery.grep($scope.rooms, function(r) {
+                    return r._id !== roomId;
                 });
             });
         }
