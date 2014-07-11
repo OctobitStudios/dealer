@@ -26,7 +26,7 @@ var RoomSchema = new Schema({
      */
     members: [
         {
-            userId: {type: Schema.Types.ObjectId, ref: 'User' },
+            user: {type: Schema.Types.ObjectId, ref: 'User' },
             active: Boolean // Is the user active in the room
         }
     ],
@@ -45,7 +45,7 @@ var RoomSchema = new Schema({
  * Find the rooms a user belongs to
  */
 RoomSchema.statics.findUserRooms = function(userId, callback){
-    this.find({"members.userId": userId})
+    this.find({'members.user': userId})
         .exec(callback);
 };
 

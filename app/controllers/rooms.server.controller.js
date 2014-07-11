@@ -42,7 +42,7 @@ exports.addRoom = function(req, res){
             creator: req.user._id,
             members: [
                 {
-                    userId: req.user._id,
+                    user: req.user._id,
                     active: true
                 }
             ]
@@ -85,7 +85,9 @@ exports.findRoom = function(req, res){
     if(!req.params.id){
         throw new Error('A room id is required');
     }
-    return Room.findById(req.params.id, function (err, room) {
+    return Room.findById(req.params.id)
+        .populate('creator members.user', '_id firstName lastName displayName email')
+        .exec(function (err, room) {
         if (err) {
             return res.send(400, {
                 message: getErrorMessage(err)
