@@ -45,6 +45,6 @@ angular.module('rooms').controller('ListController', ['$scope', '$location', 'Au
                     return r._id !== roomId;
                 });
             });
-        }
+        };
 	}
 ]);
