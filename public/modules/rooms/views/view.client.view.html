@@ -1,6 +1,10 @@
 <section data-ng-controller="ViewController">
-	{{room.name}}
-    <ul class="list-group" ng-repeat="player in players">
-        <li class="list-group-item">member</li>
-    </ul>
+	<div class="row">
+        <div class="col-md-9">{{room.name}}</div>
+        <div class="col-md-3">
+            <ul class="list-group" ng-repeat="member in room.members">
+                <li class="list-group-item">{{member.user.displayName}}</li>
+            </ul>
+        </div>
+    </div>
 </section>
