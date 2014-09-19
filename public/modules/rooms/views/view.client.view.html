@@ -1,10 +1,36 @@
 <section data-ng-controller="ViewController">
+    <!-- Invite Dialog -->
+    <div id="invite-dialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="new-room-form" name="newRoomForm" ng-submit="createRoom()">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">New Room</h4>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <input class="btn btn-primary" type="submit" value="Create">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Room UI-->
 	<div class="row">
         <div class="col-md-9">{{room.name}}</div>
         <div class="col-md-3">
-            <ul class="list-group" ng-repeat="member in room.members">
-                <li class="list-group-item">{{member.user.displayName}}</li>
-            </ul>
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">Members<a class="btn-sm btn-primary pull-right" data-toggle="modal" data-target="#invite-dalogue">Invite</a></div>
+                <div class="panel-body">
+                    <ul class="list-group" ng-repeat="member in room.members">
+                        <li class="list-group-item">{{member.user.displayName}}</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </section>
