@@ -9,5 +9,10 @@ angular.module('rooms').controller('ViewController', ['$scope', '$stateParams', 
 
         // Get the room to view.
         $scope.room = Rooms.get({roomId: $stateParams.roomId});
+
+        // Called by the new invite members dialog to invite members to the room
+        $scope.inviteMembers = function() {
+
+        }
 	}
 ]);

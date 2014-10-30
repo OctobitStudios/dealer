@@ -19,7 +19,16 @@
                             <textarea id="new-room-description" name="description" placeholder="Room Description" ng-model="room.description" class="form-control"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="new-room-deck">Deck</label>
+                            <label for="new-room-deck-dropdownMenu">Deck</label>
+                            <div class="dropdown pull-left">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="new-room-deck-dropdownMenu" data-toggle="dropdown">
+                                    Options
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="new-room-deck-dropdownMenu">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1">Fibinachi</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -3,12 +3,20 @@
     <div id="invite-dialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="new-room-form" name="newRoomForm" ng-submit="createRoom()">
+                <form id="invite-members-form" name="inviteMembersForm" ng-submit="inviteMembers()">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">New Room</h4>
+                        <h4 class="modal-title">Invite Members</h4>
                     </div>
                     <div class="modal-body">
+                        <div class="form-group">
+                            <label for="invite-to">To</label>
+                            <textarea id="invite-to" name="to" placeholder="Addresses" ng-model="invite.to" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="invite-message">Message</label>
+                            <textarea id="invite-message" name="message" placeholder="message" ng-model="invite.message" class="form-control"></textarea>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -24,7 +32,7 @@
         <div class="col-md-9">{{room.name}}</div>
         <div class="col-md-3">
             <div class="panel panel-default">
-                <div class="panel-heading clearfix">Members<a class="btn-sm btn-primary pull-right" data-toggle="modal" data-target="#invite-dalogue">Invite</a></div>
+                <div class="panel-heading clearfix">Members<a class="btn-sm btn-primary pull-right" data-toggle="modal" data-target="#invite-dialog">Invite</a></div>
                 <div class="panel-body">
                     <ul class="list-group" ng-repeat="member in room.members">
                         <li class="list-group-item">{{member.user.displayName}}</li>
